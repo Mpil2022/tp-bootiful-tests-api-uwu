@@ -1,25 +1,19 @@
 package uwu.adderapi;
 
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import uwu.adderapi.addition.AdderService;
 
-import static io.restassured.RestAssured.form;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 
 @SpringBootTest
-class AdderApiApplicationTests {
+public class ControllerTests {
 
     @Test
-    void test() {
+    public void test() {
         given()
         .when()
             .get("http://localhost:8080/adder/current")
@@ -28,5 +22,19 @@ class AdderApiApplicationTests {
                     .statusCode(HttpStatus.SC_OK)
                     .contentType(ContentType.JSON);
     }
+
+    @Test
+    public void test2() {
+        given().param("num", 5)
+        .when()
+            .post("http://localhost:8080/adder/")
+        .then()
+            .assertThat()
+                .statusCode(HttpStatus.SC_OK)
+                .contentType(ContentType.JSON)
+                .body(equalTo("5"))
+        ;
+    }
+
 
 }
