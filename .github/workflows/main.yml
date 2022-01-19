@@ -27,4 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Start application
-        run: mvn spring-boot:run
+        run: mvn test
