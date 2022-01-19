@@ -4,19 +4,22 @@ import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ControllerTests {
+
+    @LocalServerPort
+    private int port;
 
     @Test
     public void test() {
-        given()
+        given().port(port)
         .when()
-            .get("http://localhost:8080/adder/current")
+            .get("/adder/current")
         .then()
                 .assertThat()
                     .statusCode(HttpStatus.SC_OK)
@@ -25,9 +28,9 @@ public class ControllerTests {
 
     @Test
     public void test2() {
-        given().param("num", 5)
+        given().port(port).param("num", 5)
         .when()
-            .post("http://localhost:8080/adder/")
+            .post("/adder/")
         .then()
             .assertThat()
                 .statusCode(HttpStatus.SC_OK)
