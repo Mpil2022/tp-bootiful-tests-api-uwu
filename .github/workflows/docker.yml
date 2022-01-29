@@ -34,10 +34,6 @@ jobs:
         name: set up docker build
         run: docker build . --file Dockerfile --tag api-uwu:$(date +%s)
       -
-        name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api-uwu:latest
+        name: push
+        run: docker push ${{secrets.DOCKER_HUB_USERNAME}}/api-uwu:latest
+        
