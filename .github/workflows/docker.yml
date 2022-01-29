@@ -32,8 +32,8 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       -
         name: set up docker build
-        run: docker build . --file Dockerfile --tag api-uwu:$(date +%s)
+        run: docker build . --file Dockerfile --tag api-uwu
       -
         name: push
-        run: docker push ${{secrets.DOCKER_HUB_USERNAME}}/api-uwu:latest
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/api-uwu
         
