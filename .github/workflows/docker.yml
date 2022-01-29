@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       -
         name: set up docker build
-        run: docker build . --file Dockerfile --tag cocletima-front:$(date +%s)
+        run: docker build . --file Dockerfile --tag api-uwu:$(date +%s)
       -
         name: Build and push
         uses: docker/build-push-action@v2
