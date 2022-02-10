@@ -8,3 +8,4 @@ RUN apt-get install maven -y
 RUN echo "tests"
 RUN mvn test
 CMD mvn spring-boot:run
+EXPOSE 8080
